@@ -1,0 +1,5 @@
+.vs
+.idea
+.vsconfig
+Assets/Entities*
+Assets/Resources*
