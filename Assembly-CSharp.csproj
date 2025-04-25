@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Gameplay\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Managers\MainPageEventManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Buff.cs" />
+    <Compile Include="Assets\Scripts\Data\SkillAttributes.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Player.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
@@ -81,7 +82,6 @@
     <Compile Include="Assets\Scripts\Managers\CharaterSelectManager.cs" />
     <Compile Include="Assets\Scripts\Base\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Effect.cs" />
-    <Compile Include="Assets\Scripts\Data\SkillDefine.cs" />
     <Compile Include="Assets\Scripts\Base\Singleton.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Character.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterDefine.cs" />

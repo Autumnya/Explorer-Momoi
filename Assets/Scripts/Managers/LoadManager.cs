@@ -30,7 +30,7 @@ public class LoadManager : SingletonMono<LoadManager>
 
     private void Update()
     {
-        
+
     }
 
     private void Init()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public enum SkillSlot
 }
 public class Character : Entity
 {
-    public SkillBase[] SkillSlots;
+    public Dictionary<SkillSlot, SkillBase> SkillSlots;
     public bool IsPlayerControl;
     public CharacterDefine Define;
 
@@ -29,12 +30,17 @@ public class Character : Entity
 
     protected override void OnAwake()
     {
+        if(Define != null)
+            data = Define.EntityData;
         int maxValue = Enum.GetValues(typeof(SkillSlot)).Cast<int>().Max();
-        SkillSlots = new SkillBase[maxValue];
+        SkillSlots = new();
 
         _controlVelocity = Vector3.zero;
         _isKneeling = false;
         _isAiming = false;
+        _ammoRemain = MaxAmmo;
+
+        LoadDefaultSkill();
     }
 
     protected override void OnStart()
@@ -58,6 +64,17 @@ public class Character : Entity
     private void OnDestroy()
     {
         RemovePlayerControl();
+    }
+
+    private void LoadDefaultSkill()
+    {
+        if(SkillSlots == null)
+            SkillSlots = new();
+        SkillSlots[SkillSlot.NormalAttack] = SkillFactory.Instance.CreateSkill(Define.DefaultNormalAttackSkillId);
+        SkillSlots[SkillSlot.Skill1] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill1Id);
+        SkillSlots[SkillSlot.Skill2] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill2Id);
+        SkillSlots[SkillSlot.Skill3] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill3Id);
+        SkillSlots[SkillSlot.Special] = SkillFactory.Instance.CreateSkill(Define.DefaultSpecialSkillId);
     }
 
     public void SetPlayerControl()
@@ -198,7 +215,14 @@ public class Character : Entity
     }
     private void Attack()
     {
-        animator.SetTrigger("Attack");
+        if(_ammoRemain <= 0)
+        {
+            Reload();
+        }
+        if(_isAiming)
+        {
+            animator.SetTrigger("Attack");
+        }
     }
     private void Reload()
     {
@@ -207,7 +231,10 @@ public class Character : Entity
 
     private void ActivateSkill(SkillSlot slot)
     {
-        SkillSlots[(int)slot].Activate(this);
+        if(SkillSlots.TryGetValue(slot, out SkillBase skill))
+        {
+            
+        }
     }
 
     [SerializeField]
@@ -218,7 +245,7 @@ public class Character : Entity
             Debug.Log("Normal attack!");
             ActivateSkill(SkillSlot.NormalAttack);
         }
-        else if(attackIndex == 0)
+        else
         {
             Reload();
         }
@@ -227,6 +254,11 @@ public class Character : Entity
     private void OnAim()
     {
         _isAiming = true;
+    }
+    [SerializeField]
+    private void OnCancelAim()
+    {
+        _isAiming = false;
     }
     [SerializeField]
     private void OnReload()

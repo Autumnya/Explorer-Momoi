@@ -84,11 +84,12 @@ public class Entity : MonoBehaviour
         if (OnGround)
             transform.position = hit.point;
 
+        OnAwake();
+
         if (data != null)
         {
             LoadEntityData(data);
         }
-        OnAwake();
     }
 
     protected void Start()

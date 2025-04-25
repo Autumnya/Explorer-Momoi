@@ -361,7 +361,7 @@
 "Assets/Scripts/CharacterItem.cs"
 "Assets/Scripts/Data/CharacterDefine.cs"
 "Assets/Scripts/Data/EntityData.cs"
-"Assets/Scripts/Data/SkillDefine.cs"
+"Assets/Scripts/Data/SkillAttributes.cs"
 "Assets/Scripts/DontDestroy.cs"
 "Assets/Scripts/Gameplay/AttackInfo.cs"
 "Assets/Scripts/Gameplay/Buff.cs"

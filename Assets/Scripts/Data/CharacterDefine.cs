@@ -9,4 +9,10 @@ public class CharacterDefine : ScriptableObject
     public string WeaponType;
     public Sprite Avator;
     public EntityData EntityData;
+
+    public int DefaultNormalAttackSkillId;
+    public int DefaultSkill1Id;
+    public int DefaultSkill2Id;
+    public int DefaultSkill3Id;
+    public int DefaultSpecialSkillId;
 }
