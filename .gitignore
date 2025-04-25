@@ -3,3 +3,4 @@
 .vsconfig
 Assets/Entities*
 Assets/Resources*
+*.cache
