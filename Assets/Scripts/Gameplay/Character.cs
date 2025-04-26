@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.InputSystem.Controls.AxisControl;
 
 public enum SkillSlot
 {
@@ -11,11 +13,16 @@ public enum SkillSlot
     Skill3,
     Special,
 }
+
 public class Character : Entity
 {
     public Dictionary<SkillSlot, SkillBase> SkillSlots;
     public bool IsPlayerControl;
     public CharacterDefine Define;
+
+    //参数：剩余子弹量
+    public UnityAction<int> OnNormalAttackEvent;
+    public UnityAction<int> OnReloadEvent;
 
     public float gravity;
     public float jumpForce;
@@ -68,13 +75,12 @@ public class Character : Entity
 
     private void LoadDefaultSkill()
     {
-        if(SkillSlots == null)
-            SkillSlots = new();
-        SkillSlots[SkillSlot.NormalAttack] = SkillFactory.Instance.CreateSkill(Define.DefaultNormalAttackSkillId);
-        SkillSlots[SkillSlot.Skill1] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill1Id);
-        SkillSlots[SkillSlot.Skill2] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill2Id);
-        SkillSlots[SkillSlot.Skill3] = SkillFactory.Instance.CreateSkill(Define.DefaultSkill3Id);
-        SkillSlots[SkillSlot.Special] = SkillFactory.Instance.CreateSkill(Define.DefaultSpecialSkillId);
+        SkillSlots ??= new();
+        SkillSlots[SkillSlot.NormalAttack] = SkillManager.Instance.GetSkill(Define.DefaultNormalAttackSkillId);
+        SkillSlots[SkillSlot.Skill1] = SkillManager.Instance.GetSkill(Define.DefaultSkill1Id);
+        SkillSlots[SkillSlot.Skill2] = SkillManager.Instance.GetSkill(Define.DefaultSkill2Id);
+        SkillSlots[SkillSlot.Skill3] = SkillManager.Instance.GetSkill(Define.DefaultSkill3Id);
+        SkillSlots[SkillSlot.Special] = SkillManager.Instance.GetSkill(Define.DefaultSpecialSkillId);
     }
 
     public void SetPlayerControl()
@@ -244,6 +250,7 @@ public class Character : Entity
         {
             Debug.Log("Normal attack!");
             ActivateSkill(SkillSlot.NormalAttack);
+            OnNormalAttackEvent(--_ammoRemain);
         }
         else
         {
@@ -264,5 +271,6 @@ public class Character : Entity
     private void OnReload()
     {
         _ammoRemain = MaxAmmo;
+        OnReloadEvent?.Invoke(_ammoRemain);
     }
 }

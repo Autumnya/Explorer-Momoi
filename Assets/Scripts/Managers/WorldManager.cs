@@ -30,17 +30,44 @@ public class WorldManager : SingletonMono<WorldManager>
         MapEntities.Remove(collider);
     }
 
-    public void OnHitEntity(Collider target, AttackInfo attackInfo)
+    public bool OnHitEntity(Collider target, AttackInfo attackInfo)
     {
         if (MapEntities.TryGetValue(target, out Entity entity))
         {
+            Character attacker = attackInfo.Attacker;
+            EntityType attackerType = attacker.Type;
+            EntityType receiverType = entity.Type;
+
+
             if (entity.State == EntityState.Dead)
             {
                 MapEntities.Remove(target);
-                return;
+                return true;
             }
             if (entity.IsAttackable)
                 entity.ReceiveDamage(attackInfo);
         }
+        return false;
+    }
+
+    private bool IsEffectiveAttack(EntityType attackerType, EntityType receiverType)
+    {
+        if (attackerType == receiverType)
+            return false;
+        if (receiverType == EntityType.Undefined)
+            return true;
+        if(attackerType == EntityType.Player || attackerType == EntityType.Teammate)
+        {
+            if(receiverType == EntityType.Enemy)
+                return true;
+            return false;
+        }
+        if(attackerType == EntityType.Enemy)
+        {
+            if(receiverType == EntityType.Player || receiverType == EntityType.Teammate)
+                return true;
+            return false;
+        }
+        return false;
     }
 }

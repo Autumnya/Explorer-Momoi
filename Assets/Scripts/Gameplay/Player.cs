@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -5,6 +7,10 @@ using UnityEngine.InputSystem;
 public class Player : SingletonMono<Player>
 {
     private Character _targetCharacter;
+
+    [SerializeField] private TMP_Text _ammoLeftText;
+    [SerializeField] private TMP_Text _ammoMiddleText;
+    [SerializeField] private TMP_Text _ammoRightText;
 
     public UnityAction<Character> OnSetPlayerEvent;
 
@@ -24,13 +30,9 @@ public class Player : SingletonMono<Player>
 
     private void Awake()
     {
-        if (_targetCharacter != null)
-            _targetCharacter.SetPlayerControl();
-        else
-        {
+        if (_targetCharacter == null)
             _targetCharacter = Instantiate(CacheManager.Instance.GetPlayerCache().EntityData.Obj, WorldManager.Instance.PlayerSpawnPoint, Quaternion.Euler(Vector3.forward)).GetComponent<Character>();
-        }
-
+        SetPlayerCharacter(_targetCharacter);
         InitInputSystem();
     }
     private void OnEnable() => _controls.Enable();
@@ -64,14 +66,29 @@ public class Player : SingletonMono<Player>
 
     private void Start()
     {
-        if(_targetCharacter != null)
-        {
-            _targetCharacter.SetPlayerControl();
-            OnSetPlayerEvent?.Invoke(_targetCharacter);
-        }
     }
 
     private void Update()
     {
+    }
+
+    private void SetPlayerCharacter(Character character)
+    {
+        _targetCharacter = character;
+        _targetCharacter.SetPlayerControl();
+
+        _targetCharacter.OnNormalAttackEvent += OnCharacterNormalAttack;
+        _targetCharacter.OnReloadEvent += OnChararcterReload;
+
+        OnSetPlayerEvent?.Invoke(_targetCharacter);
+    }
+
+    private void OnCharacterNormalAttack(int ammoRemain)
+    {
+        _ammoLeftText.text = ammoRemain.ToString();
+    }
+    private void OnChararcterReload(int ammoRemain)
+    {
+        _ammoLeftText.text = ammoRemain.ToString();
     }
 }

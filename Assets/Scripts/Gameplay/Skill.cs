@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class EmptySkill : SkillBase
+{
+    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    {
+        return;
+    }
+}
 //Éä³öÒ»¿Å×Óµ¯
 public class MomoiNormalAttackSkill : SkillBase
 {

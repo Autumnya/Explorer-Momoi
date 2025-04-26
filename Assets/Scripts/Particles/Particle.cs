@@ -1,22 +1,45 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class Particle : MonoBehaviour
 {
-    AttackInfo attackInfo;
+    [SerializeField] protected LayerMask EntityMask;
+    [SerializeField] protected LayerMask TerrainMask;
+
+    public AttackInfo AtkInfo;
 
     protected bool Activated;
+    protected bool EnableCollider;
 
-    public void Activate()
+    private void Awake()
+    {
+        Activated = false;
+        EnableCollider = true;
+
+        OnAwake();
+    }
+
+    protected void Activate()
     {
         Activated = true;
-        WorldManager.OnActivateEvent += OnActive;
+    }
+
+    protected void Update()
+    {
+        if(Activated)
+        {
+            OnActing();
+        }
     }
 
     protected void OnDestroy()
     {
-        WorldManager.OnActivateEvent -= OnActive;
     }
 
-    protected abstract void OnActive();
+    protected virtual void OnTriggerEnterEntity(Collider entityTrigger)
+    {
+    }
+    protected virtual void OnAwake()
+    {
+    }
+    protected abstract void OnActing();
 }

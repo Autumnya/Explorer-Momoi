@@ -11,10 +11,13 @@ public enum EntityState
 }
 public enum EntityType
 {
-    Player,
-    Teammate,
-    Enemy,
-    Environment
+    //会被所有人攻击
+    Undefined = 0,
+    //会被敌人攻击
+    Player = 1,
+    Teammate = 2,
+    //会被玩家攻击
+    Enemy = 3,
 }
 public class Entity : MonoBehaviour
 {
@@ -83,6 +86,7 @@ public class Entity : MonoBehaviour
         OnGround = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, terrainLayer);
         if (OnGround)
             transform.position = hit.point;
+        Type = EntityType.Undefined;
 
         OnAwake();
 

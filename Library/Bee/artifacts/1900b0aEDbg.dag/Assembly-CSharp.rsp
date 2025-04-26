@@ -377,6 +377,7 @@
 "Assets/Scripts/Managers/DataManager.cs"
 "Assets/Scripts/Managers/LoadManager.cs"
 "Assets/Scripts/Managers/MainPageEventManager.cs"
+"Assets/Scripts/Managers/SkillManager.cs"
 "Assets/Scripts/Managers/WorldManager.cs"
 "Assets/Scripts/Particles/Bullet.cs"
 "Assets/Scripts/Particles/Particle.cs"
