@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  ARNormalBullet: {fileID: 0}
-  SMGNormalBullet: {fileID: 0}
+  ARNormalBullet: {fileID: 4701514116087233286, guid: 48584d68156aecc42bab3f55efd395cd, type: 3}
+  SMGNormalBullet: {fileID: 4701514116087233286, guid: 48584d68156aecc42bab3f55efd395cd, type: 3}
 --- !u!4 &234993823
 Transform:
   m_ObjectHideFlags: 0

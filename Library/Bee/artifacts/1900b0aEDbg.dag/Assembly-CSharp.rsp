@@ -358,7 +358,6 @@
 "Assets/Scripts/Base/EntityAttribute.cs"
 "Assets/Scripts/Base/Singleton.cs"
 "Assets/Scripts/Base/SingletonMono.cs"
-"Assets/Scripts/CharacterItem.cs"
 "Assets/Scripts/Data/CharacterDefine.cs"
 "Assets/Scripts/Data/EntityData.cs"
 "Assets/Scripts/Data/SkillAttributes.cs"
@@ -381,6 +380,8 @@
 "Assets/Scripts/Managers/WorldManager.cs"
 "Assets/Scripts/Particles/Bullet.cs"
 "Assets/Scripts/Particles/Particle.cs"
+"Assets/Scripts/UI/CharacterItem.cs"
+"Assets/Scripts/UI/SkillContainer.cs"
 -langversion:9.0
 /deterministic
 /optimize-

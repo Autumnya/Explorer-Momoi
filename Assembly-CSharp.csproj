@@ -63,11 +63,11 @@
     <Compile Include="Assets\Scripts\Base\EntityAttribute.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Entity.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterItem.cs" />
     <Compile Include="Assets\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Particles\Bullet.cs" />
     <Compile Include="Assets\Scripts\Managers\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\AttackInfo.cs" />
-    <Compile Include="Assets\Scripts\CharacterItem.cs" />
     <Compile Include="Assets\Scripts\Particles\Particle.cs" />
     <Compile Include="Assets\Scripts\Gameplay\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Managers\MainPageEventManager.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Managers\CharaterSelectManager.cs" />
     <Compile Include="Assets\Scripts\Base\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Effect.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillContainer.cs" />
     <Compile Include="Assets\Scripts\Base\Singleton.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Character.cs" />
     <Compile Include="Assets\Scripts\Data\CharacterDefine.cs" />

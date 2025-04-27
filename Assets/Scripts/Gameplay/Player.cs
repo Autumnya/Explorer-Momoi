@@ -11,6 +11,10 @@ public class Player : SingletonMono<Player>
     [SerializeField] private TMP_Text _ammoLeftText;
     [SerializeField] private TMP_Text _ammoMiddleText;
     [SerializeField] private TMP_Text _ammoRightText;
+    [SerializeField] private SkillContainer _specialSkillContainer;
+    [SerializeField] private SkillContainer _skill1Container;
+    [SerializeField] private SkillContainer _skill2Container;
+    [SerializeField] private SkillContainer _skill3Container;
 
     public UnityAction<Character> OnSetPlayerEvent;
 
@@ -79,6 +83,11 @@ public class Player : SingletonMono<Player>
 
         _targetCharacter.OnNormalAttackEvent += OnCharacterNormalAttack;
         _targetCharacter.OnReloadEvent += OnChararcterReload;
+
+        _specialSkillContainer
+        _skill1Container
+        _skill2Container
+        _skill3Container
 
         OnSetPlayerEvent?.Invoke(_targetCharacter);
     }

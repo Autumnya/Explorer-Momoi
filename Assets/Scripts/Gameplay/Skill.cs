@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmptySkill : SkillBase
 {
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
         return;
     }
@@ -18,7 +18,7 @@ public class MomoiNormalAttackSkill : SkillBase
     private static readonly float _damageMultiplier = 0.6f;
     private static readonly float _bulletSpeed = 100f;
 
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
         Bullet bullet = Instantiate(bulletPrefab, user.transform.position + _bulletPositionOffset, user.transform.rotation);
         bullet.AtkInfo = new()
@@ -36,7 +36,7 @@ public class MomoiExSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }
@@ -45,16 +45,7 @@ public class MomoiBasicSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
-    {
-
-    }
-}
-public class MomoiEnhancedSkill : SkillBase
-{
-    public GameObject projectilePrefab;
-
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }
@@ -63,7 +54,7 @@ public class MomoiSubSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void Activate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }

@@ -16,6 +16,11 @@ public class DataManager : SingletonMono<DataManager>
 
     protected override void OnAwake()
     {
+        EntitiesDefineDic = new();
+        CharactersDefineDic = new();
+        SkillsDefineDic = new();
+        ParticlePrefabsData = new();
+
         LoadAssets();
         LoadParticlePrefabs();
     }

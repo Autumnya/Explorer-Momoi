@@ -76,11 +76,11 @@ public class Character : Entity
     private void LoadDefaultSkill()
     {
         SkillSlots ??= new();
-        SkillSlots[SkillSlot.NormalAttack] = SkillManager.Instance.GetSkill(Define.DefaultNormalAttackSkillId);
-        SkillSlots[SkillSlot.Skill1] = SkillManager.Instance.GetSkill(Define.DefaultSkill1Id);
-        SkillSlots[SkillSlot.Skill2] = SkillManager.Instance.GetSkill(Define.DefaultSkill2Id);
-        SkillSlots[SkillSlot.Skill3] = SkillManager.Instance.GetSkill(Define.DefaultSkill3Id);
-        SkillSlots[SkillSlot.Special] = SkillManager.Instance.GetSkill(Define.DefaultSpecialSkillId);
+        SkillSlots[SkillSlot.NormalAttack] = SkillManager.Instance.CreateSkill(Define.DefaultNormalAttackSkillId);
+        SkillSlots[SkillSlot.Skill1] = SkillManager.Instance.CreateSkill(Define.DefaultSkill1Id);
+        SkillSlots[SkillSlot.Skill2] = SkillManager.Instance.CreateSkill(Define.DefaultSkill2Id);
+        SkillSlots[SkillSlot.Skill3] = SkillManager.Instance.CreateSkill(Define.DefaultSkill3Id);
+        SkillSlots[SkillSlot.Special] = SkillManager.Instance.CreateSkill(Define.DefaultSpecialSkillId);
     }
 
     public void SetPlayerControl()

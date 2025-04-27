@@ -6,6 +6,7 @@ public class SkillManager : SingletonMono<SkillManager>
 {
     private Dictionary<int, Type> _skillsDic = new();
     private Dictionary<int, SkillBase> _skillsObjDic = new();
+    private int _curId = 0;
 
     protected override void OnAwake()
     {
@@ -17,16 +18,24 @@ public class SkillManager : SingletonMono<SkillManager>
         _skillsDic[skillID] = typeof(T);
     }
 
-    public SkillBase GetSkill(int skillID)
+    public SkillBase CreateSkill(int skillID)
     {
-        if (_skillsDic.TryGetValue(skillID, out Type skillType))
+        if (_skillsDic.TryGetValue(skillID, out Type skillType) && DataManager.Instance.SkillsDefineDic.TryGetValue(skillID, out SkillAttributes define))
         {
             GameObject obj = new(skillType.Name);
             SkillBase skill = obj.AddComponent(skillType) as SkillBase;
-            skill.Define = DataManager.Instance.SkillsDefineDic[skillID];
+            skill.ObjId = _curId;
+            _skillsObjDic.Add(_curId, skill);
+            _curId++;
+            skill.Define = define;
             return skill;
         }
-        throw new KeyNotFoundException($"Skill {skillID} not registered");
+        throw new KeyNotFoundException($"Skill {skillID} not registered or attributes not found.");
+    }
+
+    public void RemoveSkill(SkillBase skill)
+    {
+        _skillsObjDic.Remove(skill.ObjId);
     }
 
     public void RegisterAllSkills()
@@ -35,7 +44,6 @@ public class SkillManager : SingletonMono<SkillManager>
         RegisterSkill<MomoiNormalAttackSkill>(1);
         RegisterSkill<MomoiExSkill>(2);
         RegisterSkill<MomoiBasicSkill>(3);
-        RegisterSkill<MomoiEnhancedSkill>(4);
-        RegisterSkill<MomoiSubSkill>(5);
+        RegisterSkill<MomoiSubSkill>(4);
     }
 }
