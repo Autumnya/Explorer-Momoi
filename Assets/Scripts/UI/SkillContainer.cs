@@ -16,6 +16,8 @@ public class SkillContainer : MonoBehaviour
 
     public void SetSkill(SkillBase skl)
     {
+        if (skl == null)
+            return;
         _targetSkill = skl;
         skl.OnSkillActivateEvent += StartCoolDown;
         skl.OnSkillEndCoolDownEvent += EndCoolDown;

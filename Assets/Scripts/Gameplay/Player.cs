@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,7 +35,6 @@ public class Player : SingletonMono<Player>
     {
         if (_targetCharacter == null)
             _targetCharacter = Instantiate(CacheManager.Instance.GetPlayerCache().EntityData.Obj, WorldManager.Instance.PlayerSpawnPoint, Quaternion.Euler(Vector3.forward)).GetComponent<Character>();
-        SetPlayerCharacter(_targetCharacter);
         InitInputSystem();
     }
     private void OnEnable() => _controls.Enable();
@@ -70,6 +68,7 @@ public class Player : SingletonMono<Player>
 
     private void Start()
     {
+        SetPlayerCharacter(_targetCharacter);
     }
 
     private void Update()
@@ -83,11 +82,12 @@ public class Player : SingletonMono<Player>
 
         _targetCharacter.OnNormalAttackEvent += OnCharacterNormalAttack;
         _targetCharacter.OnReloadEvent += OnChararcterReload;
+        _ammoRightText.text = _targetCharacter.MaxAmmo.ToString();
 
-        _specialSkillContainer
-        _skill1Container
-        _skill2Container
-        _skill3Container
+        _specialSkillContainer.SetSkill(_targetCharacter.SkillSlots[SkillSlot.Special]);
+        _skill1Container.SetSkill(_targetCharacter.SkillSlots[SkillSlot.Skill1]);
+        _skill2Container.SetSkill(_targetCharacter.SkillSlots[SkillSlot.Skill2]);
+        _skill3Container.SetSkill(_targetCharacter.SkillSlots[SkillSlot.Skill3]);
 
         OnSetPlayerEvent?.Invoke(_targetCharacter);
     }
