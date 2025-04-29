@@ -82,6 +82,7 @@ public class Player : SingletonMono<Player>
 
         _targetCharacter.OnNormalAttackEvent += OnCharacterNormalAttack;
         _targetCharacter.OnReloadEvent += OnChararcterReload;
+        _ammoLeftText.text = _targetCharacter.AmmoRemain.ToString();
         _ammoRightText.text = _targetCharacter.MaxAmmo.ToString();
 
         _specialSkillContainer.SetSkill(_targetCharacter.SkillSlots[SkillSlot.Special]);

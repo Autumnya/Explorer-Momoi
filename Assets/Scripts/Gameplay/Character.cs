@@ -30,7 +30,7 @@ public class Character : Entity
     private Vector2 _moveInput;
     private Vector3 _controlVelocity;
     private Vector3 _externalVelocity;
-    private int _ammoRemain;
+    public int AmmoRemain;
     [SerializeField] private bool _isKneeling;
     [SerializeField] private bool _isAiming;
 
@@ -44,7 +44,7 @@ public class Character : Entity
         _controlVelocity = Vector3.zero;
         _isKneeling = false;
         _isAiming = false;
-        _ammoRemain = MaxAmmo;
+        AmmoRemain = MaxAmmo;
 
         LoadDefaultSkill();
     }
@@ -132,6 +132,7 @@ public class Character : Entity
         _moveInput = input;
 
         OnUpdateEvent += PerformMove;
+        animator.SetBool("IsMoving", true);
     }
     private void UpdateMoveDirection(Vector2 input)
     {
@@ -150,8 +151,8 @@ public class Character : Entity
         _controlVelocity = targetDirection * Vector3.forward * Speed.CalculateValue();
 
         //转向
-        if (!animator.GetBool("IsMoving"))
-            return;
+        //if (!animator.GetBool("IsMoving"))
+        //   return;
         // 平滑插值到目标旋转
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
@@ -220,7 +221,7 @@ public class Character : Entity
     }
     private void Attack()
     {
-        if(_ammoRemain <= 0)
+        if(AmmoRemain <= 0)
         {
             Reload();
         }
@@ -245,11 +246,11 @@ public class Character : Entity
     [SerializeField]
     private void OnNormalAttack(int attackIndex)
     {
-        if(_ammoRemain > 0)
+        if(AmmoRemain > 0)
         {
             Debug.Log("Normal attack!");
             ActivateSkill(SkillSlot.NormalAttack);
-            OnNormalAttackEvent(--_ammoRemain);
+            OnNormalAttackEvent(--AmmoRemain);
         }
         else
         {
@@ -269,7 +270,7 @@ public class Character : Entity
     [SerializeField]
     private void OnReload()
     {
-        _ammoRemain = MaxAmmo;
-        OnReloadEvent?.Invoke(_ammoRemain);
+        AmmoRemain = MaxAmmo;
+        OnReloadEvent?.Invoke(AmmoRemain);
     }
 }

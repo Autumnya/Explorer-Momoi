@@ -4,3 +4,4 @@
 Assets/Entities*
 Assets/Resources*
 *.cache
+Logs/*

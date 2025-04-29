@@ -88,12 +88,11 @@ public class Entity : MonoBehaviour
             transform.position = hit.point;
         Type = EntityType.Undefined;
 
-        OnAwake();
-
         if (data != null)
         {
             LoadEntityData(data);
         }
+        OnAwake();
     }
 
     protected void Start()
