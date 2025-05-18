@@ -356,6 +356,7 @@
 -analyzer:"L:/Unity Editor/2022.3.48f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/PlayerControls.cs"
 "Assets/Scripts/Base/EntityAttribute.cs"
+"Assets/Scripts/Base/MathHelper.cs"
 "Assets/Scripts/Base/Singleton.cs"
 "Assets/Scripts/Base/SingletonMono.cs"
 "Assets/Scripts/Data/CharacterDefine.cs"
@@ -369,6 +370,7 @@
 "Assets/Scripts/Gameplay/Entity.cs"
 "Assets/Scripts/Gameplay/OrbitCamera.cs"
 "Assets/Scripts/Gameplay/Player.cs"
+"Assets/Scripts/Gameplay/RangeColliderHelper.cs"
 "Assets/Scripts/Gameplay/Skill.cs"
 "Assets/Scripts/Gameplay/SkillBase.cs"
 "Assets/Scripts/Managers/CacheManager.cs"
@@ -382,6 +384,10 @@
 "Assets/Scripts/Particles/Particle.cs"
 "Assets/Scripts/UI/CharacterItem.cs"
 "Assets/Scripts/UI/SkillContainer.cs"
+"Assets/Scripts/UI/SkillListItem.cs"
+"Assets/Scripts/UI/SkillListPanel.cs"
+"Assets/Scripts/UI/SkillSelectItem.cs"
+"Assets/Scripts/UI/SkillSelectSlot.cs"
 -langversion:9.0
 /deterministic
 /optimize-

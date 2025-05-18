@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class SkillManager : SingletonMono<SkillManager>
 {
-    private Dictionary<int, Type> _skillsDic = new();
-    private Dictionary<int, SkillBase> _skillsObjDic = new();
+    private Dictionary<int, Type> _skillsDic;
+    private Dictionary<int, SkillBase> _skillsObjDic;
     private int _curId = 0;
+
+    public int ActivedSkillCount => _skillsObjDic.Count;
 
     protected override void OnAwake()
     {
+        _skillsDic = new();
+        _skillsObjDic = new();
         RegisterAllSkills();
     }
 
@@ -28,14 +32,29 @@ public class SkillManager : SingletonMono<SkillManager>
             _skillsObjDic.Add(_curId, skill);
             _curId++;
             skill.Define = define;
+            obj.transform.SetParent(gameObject.transform);
             return skill;
         }
         throw new KeyNotFoundException($"Skill {skillID} not registered or attributes not found.");
     }
 
+    public List<SkillBase> GenerateAllSkills()
+    {
+        List<SkillBase> skills = new();
+        foreach(var kv in _skillsDic)
+        {
+            skills.Add(CreateSkill(kv.Key));
+        }
+        return skills;
+    }
+
     public void RemoveSkill(SkillBase skill)
     {
-        _skillsObjDic.Remove(skill.ObjId);
+        if(skill != null)
+        {
+            _skillsObjDic.Remove(skill.ObjId);
+            Destroy(skill.gameObject);
+        }
     }
 
     public void RegisterAllSkills()

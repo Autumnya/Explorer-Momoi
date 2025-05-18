@@ -25,13 +25,7 @@ public class OrbitCamera : SingletonMono<OrbitCamera>
 
         lookInput = Vector2.zero;
 
-        // 如果有刚体组件，禁用它的旋转以避免干扰
-        if (GetComponent<Rigidbody>())
-        {
-            GetComponent<Rigidbody>().freezeRotation = true;
-        }
-
-        Player.Instance.OnSetPlayerEvent += (targetObj) => target = targetObj.transform;
+        Player.Instance.OnSetPlayerEvent += SetTarget;
         Player.Instance.OnLookEvent += Look;
     }
 
@@ -45,6 +39,10 @@ public class OrbitCamera : SingletonMono<OrbitCamera>
         FollowTarget();
     }
 
+    private void SetTarget(Character targetChar)
+    {
+        target = targetChar.gameObject.transform;
+    }
     // 限制角度
     private static float ClampAngle(float angle, float min, float max)
     {

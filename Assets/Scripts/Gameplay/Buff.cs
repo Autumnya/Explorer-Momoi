@@ -5,10 +5,11 @@ public enum BuffType
     Buff,
     Debuff
 }
-public abstract class Buff : ScriptableObject
+public abstract class Buff
 {
-    protected float Duration;
+    public float Duration;
     protected BuffType Type;
+    public float Val;
 
     public Sprite Icon;
 
@@ -30,6 +31,16 @@ public abstract class Buff : ScriptableObject
     {
         target.OnUpdateEvent -= OnUpdate;
         target.Buffs.Remove(this);
+    }
+}
+
+public class BuffFactory : Singleton<EntityFactory>
+{
+    public Buff CreateBuff<T>(float duration, float value) where T : Buff, new()
+    {
+        T newBuff = new();
+        newBuff.Val = value;
+        return newBuff;
     }
 }
 

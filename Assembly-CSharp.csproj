@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{A1995DED-65AB-152F-8A26-CE6DFBE51E84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,19 +61,25 @@
     <Analyzer Include="L:\Unity Editor\2022.3.48f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UI\SkillSelectItem.cs" />
     <Compile Include="Assets\Scripts\Base\EntityAttribute.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Entity.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\RangeColliderHelper.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterItem.cs" />
     <Compile Include="Assets\Scripts\Managers\WorldManager.cs" />
+    <Compile Include="Assets\Scripts\Base\MathHelper.cs" />
     <Compile Include="Assets\Scripts\Particles\Bullet.cs" />
     <Compile Include="Assets\Scripts\Managers\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\AttackInfo.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillListPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillListItem.cs" />
     <Compile Include="Assets\Scripts\Particles\Particle.cs" />
     <Compile Include="Assets\Scripts\Gameplay\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Managers\MainPageEventManager.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Buff.cs" />
     <Compile Include="Assets\Scripts\Data\SkillAttributes.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillSelectSlot.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Player.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />

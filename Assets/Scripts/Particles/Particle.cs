@@ -7,28 +7,18 @@ public abstract class Particle : MonoBehaviour
 
     public AttackInfo AtkInfo;
 
-    protected bool Activated;
     protected bool EnableCollider;
 
     private void Awake()
     {
-        Activated = false;
         EnableCollider = true;
 
         OnAwake();
     }
 
-    protected void Activate()
-    {
-        Activated = true;
-    }
-
     protected void Update()
     {
-        if(Activated)
-        {
-            OnActing();
-        }
+        OnActing();
     }
 
     protected void OnDestroy()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmptySkill : SkillBase
 {
-    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    protected override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
         return;
     }
@@ -12,13 +12,13 @@ public class EmptySkill : SkillBase
 //Éä³öÒ»¿Å×Óµ¯
 public class MomoiNormalAttackSkill : SkillBase
 {
-    public Bullet bulletPrefab;
+    public static Bullet bulletPrefab = (Bullet)DataManager.Instance.ParticlePrefabsData["ARNormalBullet"];
 
     private static readonly Vector3 _bulletPositionOffset = new Vector3(0.3f, 0.6f, 0.75f);
     private static readonly float _damageMultiplier = 0.6f;
     private static readonly float _bulletSpeed = 100f;
 
-    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    protected override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
         Bullet bullet = Instantiate(bulletPrefab, user.transform.position + _bulletPositionOffset, user.transform.rotation);
         bullet.AtkInfo = new()
@@ -27,16 +27,13 @@ public class MomoiNormalAttackSkill : SkillBase
             Damage = user.AttackPower.CalculateValue() * _damageMultiplier,
             Knockback = 0,
         };
-        bullet.Speed = _bulletSpeed;
-        bullet.MaxDistance = 100f;
-        bullet.UseGravity = false;
     }
 }
 public class MomoiExSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    protected override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }
@@ -45,7 +42,7 @@ public class MomoiBasicSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    protected override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }
@@ -54,7 +51,7 @@ public class MomoiSubSkill : SkillBase
 {
     public GameObject projectilePrefab;
 
-    public override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
+    protected override void OnActivate(Character user, Entity targetEntity = null, Vector3 targetPos = new Vector3())
     {
 
     }

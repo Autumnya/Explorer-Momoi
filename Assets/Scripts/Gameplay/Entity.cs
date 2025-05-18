@@ -43,6 +43,12 @@ public class Entity : MonoBehaviour
     public UnityAction<Entity> OnUpdateEvent;
     public List<Buff> Buffs;
     public EntityData data;
+    public Vector3 ActualPosition {
+        get
+        {
+            return new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        }
+    }
 
     public Animator animator;
     [SerializeField] protected Collider coll;

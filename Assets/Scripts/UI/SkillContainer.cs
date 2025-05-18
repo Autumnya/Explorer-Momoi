@@ -6,9 +6,10 @@ public class SkillContainer : MonoBehaviour
 {
     private SkillBase _targetSkill;
 
-    public Image Thumbnail;
+    [SerializeField] private Image Thumbnail;
     [SerializeField] private Image CoolDownMask;
     [SerializeField] private TMP_Text BindKey;
+    [SerializeField] private Image PanelBg;
 
     private float _width;
     private float _height;
@@ -21,6 +22,9 @@ public class SkillContainer : MonoBehaviour
         _targetSkill = skl;
         skl.OnSkillActivateEvent += StartCoolDown;
         skl.OnSkillEndCoolDownEvent += EndCoolDown;
+
+        PanelBg.color = DataManager.Instance.DamageColorDic[_targetSkill.Define.DmgType];
+        Thumbnail.sprite = _targetSkill.Define.Icon;
     }
     public void ResetSkill()
     {

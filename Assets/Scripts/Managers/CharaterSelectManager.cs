@@ -21,7 +21,7 @@ public class CharaterSelectManager : MonoBehaviour
         _selectedCharacterIndex = -1;
         LoadCharaterInfo();
         if (_characters.Count > 0)
-            SetPreviewModel(0);
+            SelectCharacter(0);
         _startButton.onClick.AddListener(EnterGame);
     }
     /*
@@ -52,6 +52,7 @@ public class CharaterSelectManager : MonoBehaviour
     {
         if(charIndex < 0 || charIndex >= _characters.Count || _selectedCharacterIndex == charIndex)
             return;
+        CacheManager.Instance.SetPlayerChar(_characters[charIndex].Define.CharacterId);
         SetPreviewModel(charIndex);
     }
 
@@ -76,7 +77,6 @@ public class CharaterSelectManager : MonoBehaviour
 
     private void EnterGame()
     {
-        CacheManager.Instance.SetPlayerCache(_characters[_selectedCharacterIndex].Define);
         LoadManager.Instance.SwitchScene("SampleScene");
     }
 }

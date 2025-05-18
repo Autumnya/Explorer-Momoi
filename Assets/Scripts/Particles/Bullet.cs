@@ -1,10 +1,11 @@
 using UnityEngine;
 
 public class Bullet : Particle
-{ 
-    public float Speed { get; set; }
-    public float MaxDistance { get; set; }
-    public bool UseGravity { get; set; }
+{
+    [SerializeField] private float _speed;
+    [SerializeField] private float _maxDistance;
+    [SerializeField] private bool _useGravity;
+    [SerializeField] private float _remainTime;
 
     protected override void OnAwake()
     {
@@ -13,7 +14,13 @@ public class Bullet : Particle
 
     protected override void OnActing()
     {
-        float distanceThisFrame = Speed * Time.deltaTime;
+        _remainTime -= Time.deltaTime;
+        if(_remainTime < 0f)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        float distanceThisFrame = _speed * Time.deltaTime;
 
         // 向前发射射线检测碰撞
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit1, distanceThisFrame, EntityMask))

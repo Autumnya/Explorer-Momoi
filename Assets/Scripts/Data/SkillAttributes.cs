@@ -8,7 +8,10 @@ public class SkillAttributes : ScriptableObject
     public string SkillName;
     public string Description;
     public Sprite Icon;
-    public TargetType Type;
+    public TargetType TarType;
+    public DamageType DmgType;
     public int MaxLevel;
     public float Cooldown;
+    public GameObject Indicator;
+    public float RangeRedius;
 }

@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 public class WorldManager : SingletonMono<WorldManager>
 {
-    private static Dictionary<Collider, Entity> MapEntities;
-    public static UnityAction OnActivateEvent;
-    public static float Gravity;
+    public Dictionary<Collider, Entity> MapEntities;
+    public UnityAction OnActivateEvent;
+    public float Gravity;
 
     public Vector3 PlayerSpawnPoint;
 
@@ -19,13 +19,29 @@ public class WorldManager : SingletonMono<WorldManager>
     {
         OnActivateEvent?.Invoke();
     }
+    public Character CreatePlayerCharacter()
+    {
+        Character c = CacheManager.Instance.GetPlayerCache();
+        c.gameObject.transform.SetParent(gameObject.transform);
+        c.gameObject.transform.position = PlayerSpawnPoint;
+        RegisterEntity(c.gameObject.GetComponent<CapsuleCollider>(), c);
+        return c;
+    }
+    public void CreateCharacter(int characterId)
+    {
+        Character c;
+        c = EntityFactory.Instance.CreateCharacter(characterId);
+        c.SetSkillAsDefault();
+        c.gameObject.transform.SetParent(gameObject.transform);
+        RegisterEntity(c.GetComponent<CapsuleCollider>(), c);
+    }
 
-    public void RegisterEntity(Collider collider, Entity entity)
+    private void RegisterEntity(Collider collider, Entity entity)
     {
         MapEntities.Add(collider, entity);
     }
 
-    public void UnregisterEntity(Collider collider)
+    private void UnregisterEntity(Collider collider)
     {
         MapEntities.Remove(collider);
     }
@@ -69,5 +85,14 @@ public class WorldManager : SingletonMono<WorldManager>
             return false;
         }
         return false;
+    }
+}
+
+public class EntityFactory : SingletonMono<EntityFactory>
+{
+    public Character CreateCharacter(int characterId)
+    {
+        CharacterDefine define = DataManager.Instance.CharactersDefineDic[characterId];
+        return Instantiate(define.EntityData.Obj).GetComponent<Character>();
     }
 }
