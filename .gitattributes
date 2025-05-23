@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+Assets/Resources/Terrain/School/sb_03_school_p02_d[[:space:]](1)/sb_03_school_p02_d.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Resources/Terrain/School/sb_03_school_p02_n[[:space:]](1)/sb_03_school_p02_n.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Resources/Terrain/School/sb_school_01_d_p01/sb_school_01_d_p01.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Resources/Terrain/School/sb_school_01_n_p01/sb_school_01_n_p01.fbx filter=lfs diff=lfs merge=lfs -text
